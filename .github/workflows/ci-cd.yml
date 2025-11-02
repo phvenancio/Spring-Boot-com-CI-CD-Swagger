@@ -1,0 +1,34 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ✅ Checkout do código
+        uses: actions/checkout@v4
+
+      - name: ✅ Instalar JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: ✅ Rodar testes com Maven
+        run: mvn -B test --file pom.xml
+
+      - name: ✅ Build do JAR
+        run: mvn -B package --file pom.xml
+
+      - name: ✅ Upload do artefato .jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsm-app-jar
+          path: target/*.jar
