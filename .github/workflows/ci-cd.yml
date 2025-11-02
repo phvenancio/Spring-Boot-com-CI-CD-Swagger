@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: "17"
+          java-version: "21"
 
       - name: ✅ Rodar testes com Maven
         run: mvn -B test --file pom.xml
@@ -30,5 +30,5 @@ jobs:
       - name: ✅ Upload do artefato .jar
         uses: actions/upload-artifact@v4
         with:
-          name: dsm-app-jar
+          name: app-jar
           path: target/*.jar

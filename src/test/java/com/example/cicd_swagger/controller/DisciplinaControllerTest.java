@@ -31,8 +31,8 @@ class DisciplinaControllerTest {
     void testListar() throws Exception {
         when(service.listarTodas()).thenReturn(
                 Arrays.asList(
-                        new Disciplina(1L, "Programação Web"),
-                        new Disciplina(2L, "Banco de Dados")
+                        new Disciplina(1L, "Laboratório de Desenvolvimento Web"),
+                        new Disciplina(2L, "Integração e Entrega Contínua")
                 )
         );
 
@@ -44,17 +44,17 @@ class DisciplinaControllerTest {
     @Test
     void testBuscarPorId() throws Exception {
         when(service.buscarPorId(1L))
-                .thenReturn(new Disciplina(1L, "Programação Web"));
+                .thenReturn(new Disciplina(1L, "Laboratório de Desenvolvimento Web"));
 
         mockMvc.perform(get("/disciplinas/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value("Programação Web"));
+                .andExpect(jsonPath("$.nome").value("Laboratório de Desenvolvimento Web"));
     }
 
     @Test
     void testCriar() throws Exception {
-        Disciplina input = new Disciplina(null, "Estrutura de Dados");
-        Disciplina output = new Disciplina(3L, "Estrutura de Dados");
+        Disciplina input = new Disciplina(null, "Programação para Dispositivos Móveis");
+        Disciplina output = new Disciplina(3L, "Programação para Dispositivos Móveis");
 
         when(service.criar(any())).thenReturn(output);
 
@@ -65,6 +65,6 @@ class DisciplinaControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(3))
-                .andExpect(jsonPath("$.nome").value("Estrutura de Dados"));
+                .andExpect(jsonPath("$.nome").value("Programação para Dispositivos Móveis"));
     }
 }

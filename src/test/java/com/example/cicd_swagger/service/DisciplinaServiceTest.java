@@ -21,16 +21,16 @@ class DisciplinaServiceTest {
         DisciplinaService service = new DisciplinaService();
         Disciplina d = service.buscarPorId(1L);
         assertNotNull(d);
-        assertEquals("Programação Web", d.getNome());
+        assertEquals("Laboratório de Desenvolvimento Web", d.getNome());
     }
 
     @Test
     void testCriar() {
         DisciplinaService service = new DisciplinaService();
-        Disciplina nova = new Disciplina(null, "Estrutura de Dados");
+        Disciplina nova = new Disciplina(null, "Programação para Dispositivos Móveis");
         Disciplina criada = service.criar(nova);
 
         assertNotNull(criada.getId());
-        assertEquals("Estrutura de Dados", criada.getNome());
+        assertEquals("Programação para Dispositivos Móveis", criada.getNome());
     }
 }
